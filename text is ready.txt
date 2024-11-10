@@ -1,1 +1,59 @@
-text is ready
+Question 1
+
+import xml.etree.ElementTree as ET
+# Create the root element
+tag1 = ET.Element('tag1')
+
+# Add subelements and set their text
+tag2 = ET.SubElement(tag1, 'tag2')
+tag2.text = 'Animal'
+
+tag3 = ET.SubElement(tag1, 'tag3')
+tag3.text = 'Domestic'
+
+tag4 = ET.SubElement(tag1, 'tag4')
+
+tag4_1 = ET.SubElement(tag4, 'tag4.1')
+tag4_1.text = 'Cat'
+
+tag4_2 = ET.SubElement(tag4, 'tag4.2')
+tag4_2.text = 'Persian'
+
+tag5 = ET.SubElement(tag1, 'tag5')
+tag5.text = 'Iran'
+
+tag6 = ET.SubElement(tag1, 'tag6')
+tag6.text = 'Male'
+
+tag7 = ET.SubElement(tag1, 'tag7')
+tag7.text = '2021.05.04'
+
+# Print the XML structure
+ET.dump(tag1)
+
+
+
+
+Question 2
+
+import xml.etree.ElementTree as ET
+vehicle_xml_data_as_string = "<motorvehicles><vehicle><registration_no>CBB1456</registration_no><make>Toyota</make><model>Premio</model></vehicle><vehicle><registration_no>PR2245</registration_no><make>Mazda</make><model>Bongo</model></vehicle><vehicle><registration_no>DE2115</registration_no><make>TATA</make><model>Sumo</model></vehicle><vehicle><registration_no>CAR7785</registration_no><make>Kia</make><model>Optima</model></vehicle></motorvehicles>"
+
+
+# Parse the XML data
+root = ET.fromstring(vehicle_xml_data_as_string)
+
+# Update the vehicle with registration number DE2115
+for vehicle in root.findall('vehicle'):
+    reg_no = vehicle.find('registration_no')
+    if reg_no is not None and reg_no.text == 'DE2115':
+        vehicle.find('make').text = 'Nissan'
+        vehicle.find('model').text = 'Skyline'
+
+# Print registration numbers of all Nissan vehicles
+for vehicle in root.findall('vehicle'):
+    make = vehicle.find('make')
+    if make is not None and make.text == 'Nissan':
+        reg_no = vehicle.find('registration_no')
+        if reg_no is not None:
+            print(reg_no.text)
