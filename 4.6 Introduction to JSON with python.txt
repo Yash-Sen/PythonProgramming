@@ -1,0 +1,13 @@
+Question 1
+
+<short> White Basmati Rice. </short>
+
+Quetion 2
+
+import json
+myVar = '{"name": "Bob", "languages": ["English", "French"]}'
+json_obj = json.loads(myVar)
+
+num_objects = len(json_obj)
+
+print(num_objects)
